@@ -28,7 +28,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
+        <nav className="fixed justify-center w-full z-50 top-0">
+              <Navbar />
+        </nav>
         {children}
       </body>
     </html>

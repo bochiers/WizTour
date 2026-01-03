@@ -15,7 +15,7 @@ const Navbar = () => {
     ];
     return ( 
         // untuk return navbar
-        <nav>
+        <nav className='bg-[#E9E3D7] p-2 shadow-md w-full h-[80px] flex items-center'>
             <div className='container m-4 flex justify-start'>
                 <div className='space-x-10'>
                     {navLinks.map((link) => {
@@ -25,7 +25,7 @@ const Navbar = () => {
                             <Link 
                                 key={link.name}
                                 href={link.path}
-                                className={`padding-4 rounded-xl transition-all-duration-300
+                                className={`p-4 rounded-xl transition-all-duration-300
                                         ${isActive 
                                         ? "bg-white/30 backdrop-blur-lg border border-white/40 shadow-[0_4px_30px_rgba(0,0,0,0.1)] text-blue-700 font-normal" 
                                         : "text-gray-600 hover:bg-white/20 hover:backdrop-blur-sm"
