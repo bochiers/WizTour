@@ -31,7 +31,9 @@ export default function RootLayout({
         <nav className="fixed justify-center w-full z-50 top-0">
               <Navbar />
         </nav>
+        <section className="mt-20">
         {children}
+        </section>
       </body>
     </html>
   );
