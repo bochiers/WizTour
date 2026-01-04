@@ -1,7 +1,7 @@
 'use client';
 export default function About() {
     return (
-        <section className="min-h-screen flex flex-col items-center justify-center bg-white text-gray-800 p-8">
+        <section id="About" className="min-h-screen flex flex-col items-center justify-center bg-white text-gray-800 p-8">
             <h1 className="text-4xl font-bold mb-6">About WizTour</h1>
             <p className="text-lg max-w-3xl text-center mb-4">
                 Welcome to WizTour, your ultimate travel companion! We are dedicated to making your travel experiences unforgettable by providing top-notch tour packages, car rentals, and destination guides.
