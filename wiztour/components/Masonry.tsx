@@ -2,15 +2,33 @@ import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 're
 import { gsap } from 'gsap';
 
 const useMedia = (queries: string[], values: number[], defaultValue: number): number => {
-  const get = () => values[queries.findIndex(q => matchMedia(q).matches)] ?? defaultValue;
+  const isClient = typeof window !== 'undefined' && typeof window.matchMedia === 'function';
 
-  const [value, setValue] = useState<number>(get);
+  const get = () => {
+    if (!isClient) return defaultValue;
+    const idx = queries.findIndex(q => window.matchMedia(q).matches);
+    return values[idx] ?? defaultValue;
+  };
+
+  const [value, setValue] = useState<number>(get());
 
   useEffect(() => {
-    const handler = () => setValue(get);
-    queries.forEach(q => matchMedia(q).addEventListener('change', handler));
-    return () => queries.forEach(q => matchMedia(q).removeEventListener('change', handler));
-  }, [queries]);
+    if (!isClient) return;
+    const mqls = queries.map(q => window.matchMedia(q));
+    const handler = () => setValue(get());
+
+    mqls.forEach(mql => {
+      if (mql.addEventListener) mql.addEventListener('change', handler);
+      else mql.addListener(handler);
+    });
+
+    return () => {
+      mqls.forEach(mql => {
+        if (mql.removeEventListener) mql.removeEventListener('change', handler);
+        else mql.removeListener(handler);
+      });
+    };
+  }, [queries.join(','), isClient]);
 
   return value;
 };

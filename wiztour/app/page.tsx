@@ -5,6 +5,7 @@ import About from "@/components/About";
 import Our from "@/components/Our";
 import Pricing from "@/components/Pricing";
 import Contact from "@/components/Contact";
+import Product from "@/components/Product";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
     <About/>
     <Our/>
     <Pricing/>
+    <Product/>
     <Contact/>
     <Footer/>  
     
